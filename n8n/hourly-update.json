@@ -1,0 +1,49 @@
+{
+  "name": "Unhyped v2 - hourly update (Milestone 1 skeleton)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a1",
+      "name": "Run by hand",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://jkmsxmqlixegztkuefix.supabase.co/rest/v1/topics?select=id,slug&active=eq.true",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "a2",
+      "name": "Read active topics",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [240, 0]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://jkmsxmqlixegztkuefix.supabase.co/rest/v1/topics?id=eq.{{ $json.id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={ \"last_run_at\": \"{{ $now.toISO() }}\" }",
+        "options": {}
+      },
+      "id": "a3",
+      "name": "Update last_run_at",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 0]
+    }
+  ],
+  "connections": {
+    "Run by hand": { "main": [[{ "node": "Read active topics", "type": "main", "index": 0 }]] },
+    "Read active topics": { "main": [[{ "node": "Update last_run_at", "type": "main", "index": 0 }]] }
+  },
+  "settings": {}
+}

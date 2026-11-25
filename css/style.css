@@ -1,0 +1,50 @@
+:root {
+  --paper: #F5F2E9;
+  --white: #FFFFFF;
+  --ink: #17212B;
+  --line: #E6E2D9;
+  --muted: #4A5560;
+
+  --tesla: #3A4A5C;
+  --nvidia: #76B900;
+  --ai: #7BCBF2;
+  --arsenal: #8E2344;
+  --robotics: #F2C14E;
+
+  --official: #245984;
+  --report: #F6C653;
+  --rumor: #B42327;
+
+  --r-sm: 6px;
+  --r-md: 8px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Heebo', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.app { max-width: 480px; margin: 0 auto; padding: 16px; }
+
+.top { display: flex; justify-content: space-between; align-items: center; min-height: 44px; }
+.logo { font-weight: 800; font-size: 24px; letter-spacing: -0.5px; }
+
+h1 { font-size: 28px; line-height: 36px; font-weight: 700; margin: 24px 0 8px; }
+.muted { color: var(--muted); margin: 0 0 16px; }
+
+.topic-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.topic-list li {
+  display: flex; align-items: center; gap: 12px;
+  min-height: 56px; padding: 0 16px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent, var(--ink));
+  border-radius: var(--r-md);
+  font-weight: 600; font-size: 18px;
+}
